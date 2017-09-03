@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Game of Thrones</title>
+    <link rel="stylesheet" type="text/css" href="gameOfThrones.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    
+</head>
+<body>
+    <img id="378" src="targaryen.png" alt="Targaryen Logo">
+    <img id="16" src="baratheon.png" alt="Baratheon Logo">
+    <img id="229" src="lannister.png" alt="Lannister Logo">
+    <img id="362" src="stark.png" alt="Stark Logo">
+    <div id="info">
+            <fieldset>
+                <legend>House Details</legend>
+                <p></p>
+            </fieldset>
+    </div>
+    <script>
+        $(document).ready(function(){
+            var url = "https://www.anapioficeandfire.com/api/houses/";
+                $("img").click(function(){
+                    var house = $(this).attr('id');
+                    $.get(url + house, function(res) {
+                        // console.log(data);          
+
+                            var html_str = "";
+                            html_str += "<h4>Name:</h4>";
+                            html_str += res['name'];
+                            html_str += "<h4>Words:</h4>";
+                            html_str += res['words'];
+                            html_str += "<h4>Titles</h4>";
+                            html_str += res['titles'];
+                            $('p').html(html_str);
+            
+        });
+                });
+        });
+    </script>
+</body>
+</html>
